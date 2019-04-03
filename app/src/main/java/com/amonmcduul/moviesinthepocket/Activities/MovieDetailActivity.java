@@ -1,10 +1,17 @@
 package com.amonmcduul.moviesinthepocket.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.amonmcduul.moviesinthepocket.Data.DatabaseHelper;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -30,6 +37,12 @@ public class MovieDetailActivity extends AppCompatActivity {
     private RequestQueue queue;
     private String movieId;
 
+    DatabaseHelper mDatabaseHelper;
+    private RatingBar ratingBar;
+    private Button btnSend, btnViewData;
+    private EditText content;
+    private TextView result;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +55,49 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         setUpUI();
         getMoviesDetails(movieId);
+
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        content = (EditText) findViewById(R.id.content);
+        result = (TextView) findViewById(R.id.result);
+
+        btnSend = (Button) findViewById(R.id.btnSend);
+        btnViewData = (Button) findViewById(R.id.btnViewData);
+        mDatabaseHelper = new DatabaseHelper(this);
+
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String title = movie.getTitle();
+                String review = content.getText().toString();
+                String rating = "Rating: " + ratingBar.getRating();
+                if (content.length() != 0) {
+                    AddData(title, review, rating);
+                    content.setText("");
+                } else {
+                    toastMessage("You must put something in the text field!");
+                }
+
+            }
+        });
+
+        btnViewData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MovieDetailActivity.this, DataActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    public void AddData(String title, String review, String rating) {
+        boolean insertData = mDatabaseHelper.addData(title, review, rating);
+
+        if (insertData) {
+            toastMessage("Data Successfully Inserted!");
+        } else {
+            toastMessage("Something went wrong");
+        }
     }
 
     private void getMoviesDetails(String id) {
@@ -105,5 +161,9 @@ public class MovieDetailActivity extends AppCompatActivity {
         plot = findViewById(R.id.plotDet);
         boxOffice = findViewById(R.id.boxOfficeDet);
         runtime = findViewById(R.id.runtimeDet);
+    }
+
+    private void toastMessage(String message){
+        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
 }

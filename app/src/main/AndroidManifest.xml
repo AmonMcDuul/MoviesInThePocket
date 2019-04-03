@@ -28,6 +28,8 @@
             android:required="false" />
 
         <activity android:name=".Activities.MovieDetailActivity"></activity>
+        <activity android:name=".Activities.EditDataActivity"></activity>
+        <activity android:name=".Activities.DataActivity"></activity>
     </application>
 
 </manifest>
