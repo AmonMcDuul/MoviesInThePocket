@@ -12,6 +12,11 @@ Key: To get your own key to connect to the API contact http://www.omdbapi.com/
 Add the key to: MoviesInThePocket/app/src/main/java/com/amonmcduul/moviesinthepocket/Utilities/Prefs.java
 
 
+SDK Version:
+        minSdkVersion 21
+        targetSdkVersion 28
+
+
 This project is mantained by:
 
     Joran Schols
