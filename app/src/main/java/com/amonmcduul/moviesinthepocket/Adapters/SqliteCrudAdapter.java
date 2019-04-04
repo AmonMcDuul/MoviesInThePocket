@@ -10,36 +10,49 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.amonmcduul.moviesinthepocket.Activities.EditDataActivity;
-import com.amonmcduul.moviesinthepocket.R;
 import com.amonmcduul.moviesinthepocket.Data.DatabaseHelper;
 import com.amonmcduul.moviesinthepocket.Model.DataModel;
+import com.amonmcduul.moviesinthepocket.R;
 
 import java.util.List;
 
+/**
+ * The type Sqlite crud adapter.
+ */
 public class SqliteCrudAdapter extends ArrayAdapter<DataModel> {
-    private Button btnSave,btnDelete;
-    private EditText editable_item;
 
-    DatabaseHelper mDatabaseHelper;
-
-    private String selectedName;
-    private int selectedID;
-
+    /**
+     * The M ctx.
+     */
     Context mCtx;
+    /**
+     * The Layout res.
+     */
     int layoutRes;
+    /**
+     * The Data list.
+     */
     List<DataModel> dataList;
 
-    //the databasemanager object
+    /**
+     * The M database.
+     */
+//the databasemanager object
     DatabaseHelper mDatabase;
 
-    //modified the constructor and we are taking the DatabaseManager instance here
+    /**
+     * Instantiates a new Sqlite crud adapter.
+     *
+     * @param mCtx      the m ctx
+     * @param layoutRes the layout res
+     * @param dataList  the data list
+     * @param mDatabase the m database
+     */
+//modified the constructor and we are taking the DatabaseManager instance here
     public SqliteCrudAdapter(Context mCtx, int layoutRes, List<DataModel> dataList, DatabaseHelper mDatabase) {
         super(mCtx, layoutRes, dataList);
 

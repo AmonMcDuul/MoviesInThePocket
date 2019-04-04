@@ -14,12 +14,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * The type Data activity.
+ */
 public class DataActivity extends AppCompatActivity {
 
+    /**
+     * The Data list.
+     */
     List<DataModel> dataList;
+    /**
+     * The List view.
+     */
     ListView listView;
 
-    //The databasemanager object
+    /**
+     * The M database.
+     */
+//The databasemanager object
     DatabaseHelper mDatabase;
 
     @Override

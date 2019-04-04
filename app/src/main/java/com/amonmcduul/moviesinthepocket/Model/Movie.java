@@ -2,151 +2,107 @@ package com.amonmcduul.moviesinthepocket.Model;
 
 import java.io.Serializable;
 
+/**
+ * The type Movie.
+ */
 public class Movie implements Serializable {
     private static final long id = 1L;
-    private String title, director, year, runtime, imdbId, poster, genre, writer, actors, plot, rating, dvdRelease, productionCompany,
-            country, awards, tvRated, movieType;
+    private String title, year, runtime, imdbId, poster, writer, actors, plot, rating, movieType;
 
+    /**
+     * Instantiates a new Movie.
+     */
     public Movie() {
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public static long getId() {
         return id;
     }
 
+    /**
+     * Gets title.
+     *
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets title.
+     *
+     * @param title the title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
-    }
-
+    /**
+     * Gets year.
+     *
+     * @return the year
+     */
     public String getYear() {
         return year;
     }
 
+    /**
+     * Sets year.
+     *
+     * @param year the year
+     */
     public void setYear(String year) {
         this.year = year;
     }
 
-    public String getRuntime() {
-        return runtime;
-    }
-
-    public void setRuntime(String runtime) {
-        this.runtime = runtime;
-    }
-
+    /**
+     * Gets imdb id.
+     *
+     * @return the imdb id
+     */
     public String getImdbId() {
         return imdbId;
     }
 
+    /**
+     * Sets imdb id.
+     *
+     * @param imdbId the imdb id
+     */
     public void setImdbId(String imdbId) {
         this.imdbId = imdbId;
     }
 
+    /**
+     * Gets poster.
+     *
+     * @return the poster
+     */
     public String getPoster() {
         return poster;
     }
 
+    /**
+     * Sets poster.
+     *
+     * @param poster the poster
+     */
     public void setPoster(String poster) {
         this.poster = poster;
     }
 
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public String getWriter() {
-        return writer;
-    }
-
-    public void setWriter(String writer) {
-        this.writer = writer;
-    }
-
-    public String getActors() {
-        return actors;
-    }
-
-    public void setActors(String actors) {
-        this.actors = actors;
-    }
-
-    public String getPlot() {
-        return plot;
-    }
-
-    public void setPlot(String plot) {
-        this.plot = plot;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
-
-    public String getDvdRelease() {
-        return dvdRelease;
-    }
-
-    public void setDvdRelease(String dvdRelease) {
-        this.dvdRelease = dvdRelease;
-    }
-
-    public String getProductionCompany() {
-        return productionCompany;
-    }
-
-    public void setProductionCompany(String productionCompany) {
-        this.productionCompany = productionCompany;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getAwards() {
-        return awards;
-    }
-
-    public void setAwards(String awards) {
-        this.awards = awards;
-    }
-
-    public String getTvRated() {
-        return tvRated;
-    }
-
-    public void setTvRated(String tvRated) {
-        this.tvRated = tvRated;
-    }
-
+    /**
+     * Gets movie type.
+     *
+     * @return the movie type
+     */
     public String getMovieType() {
         return movieType;
     }
 
-    public void setMovieType(String movieType) {
-        this.movieType = movieType;
-    }
 }

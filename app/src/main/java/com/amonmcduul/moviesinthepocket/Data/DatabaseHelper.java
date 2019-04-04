@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 
+/**
+ * The type Database helper.
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHelper";
@@ -18,6 +21,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL3 = "review";
     private static final String COL4 = "rating";
 
+    /**
+     * Instantiates a new Database helper.
+     *
+     * @param context the context
+     */
     public DatabaseHelper(Context context) {
         super(context, TABLE_NAME, null, 1);
     }
@@ -35,6 +43,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    /**
+     * Add data boolean.
+     *
+     * @param title  the title
+     * @param review the review
+     * @param rating the rating
+     * @return the boolean
+     */
     public boolean addData(String title, String review, String rating) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -56,37 +72,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * Returns all the data from database
-     * @return
+     *
+     * @return data
      */
-    public Cursor getData(){
+    public Cursor getData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + COL2 + " ASC " ;
+        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + COL2 + " ASC ";
         Cursor data = db.rawQuery(query, null);
         return data;
     }
 
     /**
      * Returns only the ID that matches the name passed in
+     *
      * @param name
      * @return
      */
-    public Cursor getItemID(String name){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME +
-                " WHERE " + COL2 + " = '" + name + "'";
-        Cursor data = db.rawQuery(query, null);
-        return data;
-    }
+//    public Cursor getItemID(String name) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME +
+//                " WHERE " + COL2 + " = '" + name + "'";
+//        Cursor data = db.rawQuery(query, null);
+//        return data;
+//    }
 
     /**
      * Updates the data field
+     *
+     * @param id        the id
+     * @param newReview the new review
+     * @param newRating the new rating
+     * @return the boolean
      */
-    public boolean updateData(int id, String newReview, String newRating){
+    public boolean updateData(int id, String newReview, String newRating) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "UPDATE " + TABLE_NAME + " SET " + COL3 +
-                " = '" + newReview + "' WHERE " + COL1 + " = '" + id + "'" ;
+                " = '" + newReview + "' WHERE " + COL1 + " = '" + id + "'";
         String query2 = "UPDATE " + TABLE_NAME + " SET " + COL4 +
-                " = '" + newRating + "' WHERE " + COL1 + " = '" + id + "'" ;
+                " = '" + newRating + "' WHERE " + COL1 + " = '" + id + "'";
         Log.d(TAG, "updateData: query: " + query);
         db.execSQL(query);
         db.execSQL(query2);
@@ -96,10 +119,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * Delete from database
-     * @param id
-     * @param name
+     *
+     * @param id   the id
+     * @param name the name
      */
-    public void deleteName(int id, String name){
+    public void deleteName(int id, String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "DELETE FROM " + TABLE_NAME + " WHERE "
                 + COL1 + " = '" + id + "'" +
@@ -109,6 +133,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
+    /**
+     * Delete user boolean.
+     *
+     * @param id the id
+     * @return the boolean
+     */
     public boolean deleteUser(int id) {
         SQLiteDatabase db = getWritableDatabase();
         return db.delete(TABLE_NAME, COL1 + "=?", new String[]{String.valueOf(id)}) == 1;

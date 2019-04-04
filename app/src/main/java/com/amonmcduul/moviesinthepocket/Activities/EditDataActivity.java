@@ -13,13 +13,19 @@ import com.amonmcduul.moviesinthepocket.Data.DatabaseHelper;
 import com.amonmcduul.moviesinthepocket.R;
 
 
+/**
+ * The type Edit data activity.
+ */
 public class EditDataActivity extends AppCompatActivity {
 
     private static final String TAG = "EditDataActivity";
 
-    private Button btnSave,btnDelete;
+    private Button btnSave, btnDelete;
     private EditText editable_item, editable_item2;
 
+    /**
+     * The M database helper.
+     */
     DatabaseHelper mDatabaseHelper;
 
     private String selectedReview;
@@ -30,16 +36,16 @@ public class EditDataActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_data_layout);
-        btnSave = (Button) findViewById(R.id.btnSave);
-        btnDelete = (Button) findViewById(R.id.btnDelete);
-        editable_item = (EditText) findViewById(R.id.editable_item);
-        editable_item2 = (EditText) findViewById(R.id.editable_item2);
+        btnSave = findViewById(R.id.btnSave);
+        btnDelete = findViewById(R.id.btnDelete);
+        editable_item = findViewById(R.id.editable_item);
+        editable_item2 = findViewById(R.id.editable_item2);
         mDatabaseHelper = new DatabaseHelper(this);
         //get the intent extra from the ListDataActivity
         Intent receivedIntent = getIntent();
 
         //now get the itemID we passed as an extra
-        selectedID = receivedIntent.getIntExtra("id",-1); //NOTE: -1 is just the default value
+        selectedID = receivedIntent.getIntExtra("id", -1); //NOTE: -1 is just the default value
 
         //now get the name we passed as an extra
         selectedReview = receivedIntent.getStringExtra("review");
@@ -54,9 +60,9 @@ public class EditDataActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String item = editable_item.getText().toString();
-                if(!item.equals("")){
-                    mDatabaseHelper.updateData(selectedID,selectedReview,selectedRating);
-                }else{
+                if (!item.equals("")) {
+                    mDatabaseHelper.updateData(selectedID, selectedReview, selectedRating);
+                } else {
                     toastMessage("You must enter a review");
                 }
             }
@@ -65,7 +71,7 @@ public class EditDataActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDatabaseHelper.deleteName(selectedID,selectedReview);
+                mDatabaseHelper.deleteName(selectedID, selectedReview);
                 editable_item.setText("");
                 toastMessage("removed from database");
             }
@@ -75,9 +81,10 @@ public class EditDataActivity extends AppCompatActivity {
 
     /**
      * customizable toast
+     *
      * @param message
      */
-    private void toastMessage(String message){
-        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
+    private void toastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

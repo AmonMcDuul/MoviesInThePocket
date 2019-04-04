@@ -171,7 +171,6 @@
         android:layout_marginBottom="57dp"
         android:ems="10"
         android:hint="Write your comment"
-        android:text="This is good!"
         app:layout_constraintBottom_toTopOf="@+id/btnSend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -203,18 +202,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/content" />
-
-    <Button
-        android:id="@+id/btnViewData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="40dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnSend"
-        app:layout_constraintTop_toBottomOf="@+id/result" />
 
 </android.support.constraint.ConstraintLayout>

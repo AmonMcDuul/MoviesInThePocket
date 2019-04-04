@@ -35,6 +35,9 @@ import com.amonmcduul.moviesinthepocket.R;
 import com.amonmcduul.moviesinthepocket.Utilities.Constants;
 import com.amonmcduul.moviesinthepocket.Utilities.Prefs;
 
+/**
+ * The type Main activity.
+ */
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MovieRecyclerViewAdapter movieRecyclerViewAdapter;
@@ -48,12 +51,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         queue = Volley.newRequestQueue(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Show input dialog.
+     */
     public void showInputDialog() {
         alertDialogBuilder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dialog_view, null);
@@ -133,7 +139,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Get movies
+    /**
+     * Gets movies.
+     *
+     * @param searchTerm the search term
+     * @return the movies
+     */
+// Get movies
     public List<Movie> getMovies(String searchTerm) {
         movieList.clear();
 
@@ -144,14 +156,13 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONArray moviesArray = response.getJSONArray("Search");
 
-                    for(int i = 0; i < moviesArray.length(); i++) {
+                    for (int i = 0; i < moviesArray.length(); i++) {
                         JSONObject movieObj = moviesArray.getJSONObject(i);
 
                         Movie movie = new Movie();
 
                         movie.setTitle(movieObj.getString("Title"));
                         movie.setYear("Year Released: " + movieObj.getString("Year"));
-                      //  movie.setMovieType("Type: " + movieObj.getString("Type"));
                         movie.setPoster(movieObj.getString("Poster"));
                         movie.setImdbId(movieObj.getString("imdbID"));
 
@@ -162,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
                     movieRecyclerViewAdapter.notifyDataSetChanged();
 
-                } catch(JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }

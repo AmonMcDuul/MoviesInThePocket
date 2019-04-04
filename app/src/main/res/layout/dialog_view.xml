@@ -18,7 +18,7 @@
             <TextView
                 android:id="@+id/titleText"
                 android:layout_width="wrap_content"
-                android:text="New Search Term"
+                android:text="Search movies"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_centerHorizontal="true"
@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@id/titleText"
-                android:hint="Search movies"
+                android:hint="Enter search request"
                 android:textStyle="italic" />
 
             <Button
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/searchEdt"
-                android:background="@color/design_default_color_primary_dark"
+                android:background="@color/colorPrimaryDark"
                 android:text="Submit"
                 android:textColor="@android:color/white" />
         </RelativeLayout>

@@ -9,20 +9,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 import com.amonmcduul.moviesinthepocket.Activities.MovieDetailActivity;
 import com.amonmcduul.moviesinthepocket.Model.Movie;
 import com.amonmcduul.moviesinthepocket.R;
+import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
+/**
+ * The type Movie recycler view adapter.
+ */
 public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecyclerViewAdapter.ViewHolder> {
     private Context context;
     private List<Movie> movieList;
 
+    /**
+     * Instantiates a new Movie recycler view adapter.
+     *
+     * @param context the context
+     * @param movies  the movies
+     */
     public MovieRecyclerViewAdapter(Context context, List<Movie> movies) {
         this.context = context;
         movieList = movies;
@@ -57,8 +64,23 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
         return movieList.size();
     }
 
+    /**
+     * The type View holder.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView title, year, type;
+        /**
+         * The Title.
+         */
+        TextView title, /**
+         * The Year.
+         */
+        year, /**
+         * The Type.
+         */
+        type;
+        /**
+         * The Poster.
+         */
         ImageView poster;
 
         @Override
@@ -66,6 +88,12 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
 
         }
 
+        /**
+         * Instantiates a new View holder.
+         *
+         * @param itemView the item view
+         * @param ctx      the ctx
+         */
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
             context = ctx;
