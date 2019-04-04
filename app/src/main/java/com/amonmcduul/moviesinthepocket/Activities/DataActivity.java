@@ -31,6 +31,7 @@ public class DataActivity extends AppCompatActivity {
     /**
      * The M database.
      */
+
 //The databasemanager object
     DatabaseHelper mDatabase;
 
