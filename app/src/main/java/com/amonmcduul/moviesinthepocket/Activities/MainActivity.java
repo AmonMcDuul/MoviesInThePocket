@@ -1,6 +1,7 @@
 package com.amonmcduul.moviesinthepocket.Activities;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -93,9 +94,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.new_search) {
-            showInputDialog();
-            return true;
+        if (id == R.id.my_list) {
+            Intent intent = new Intent(MainActivity.this, DataActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

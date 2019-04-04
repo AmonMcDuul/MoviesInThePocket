@@ -23,10 +23,6 @@ import com.amonmcduul.moviesinthepocket.Model.DataModel;
 
 import java.util.List;
 
-/**
- * Created by wesix on 15/12/17.
- */
-
 public class SqliteCrudAdapter extends ArrayAdapter<DataModel> {
     private Button btnSave,btnDelete;
     private EditText editable_item;
@@ -77,65 +73,67 @@ public class SqliteCrudAdapter extends ArrayAdapter<DataModel> {
             }
         });
 
-//        view.findViewById(R.id.btnEdit).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                updateData(user);
-//            }
-//        });
+
+        view.findViewById(R.id.btnEdit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateData(user);
+            }
+        });
 
         return view;
     }
 
 
-//    private void updateEmployee(final UserDataList userDataList) {
-//
-//        AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
-//        LayoutInflater inflater = LayoutInflater.from(mCtx);
-//        View view = inflater.inflate(R.layout.dialog_update_user, null);
-//        builder.setView(view);
-//
-//        final AlertDialog alertDialog = builder.create();
-//        alertDialog.show();
-//
-//        final EditText editTextName = view.findViewById(R.id.editTextName);
-//        final EditText editTextSalary = view.findViewById(R.id.editTextSalary);
-//        final Spinner spinner = view.findViewById(R.id.spinnerDepartment);
-//
-//        editTextName.setText(userDataList.getName());
-//        editTextSalary.setText(String.valueOf(userDataList.getSalary()));
-//
-//
-//        view.findViewById(R.id.buttonUpdateEmployee).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                String name = editTextName.getText().toString().trim();
-//                String salary = editTextSalary.getText().toString().trim();
-//                String dept = spinner.getSelectedItem().toString().trim();
-//
-//                if (name.isEmpty()) {
-//                    editTextName.setError("Name can't be empty");
-//                    editTextName.requestFocus();
-//                    return;
-//                }
-//
-//                if (salary.isEmpty()) {
-//                    editTextSalary.setError("Salary can't be empty");
-//                    editTextSalary.requestFocus();
-//                    return;
-//                }
-//
-//
-//                //calling the update method from database manager instance
-//                if (mDatabase.updateUser(userDataList.getId(), name, dept, Double.valueOf(salary))) {
-//                    Toast.makeText(mCtx, "User Details Updated", Toast.LENGTH_SHORT).show();
-//                    loadEmployeesFromDatabaseAgain();
-//                }
-//                alertDialog.dismiss();
-//            }
-//        });
-//    }
+    private void updateData(final DataModel userDataList) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
+        LayoutInflater inflater = LayoutInflater.from(mCtx);
+        View view = inflater.inflate(R.layout.edit_data_layout, null);
+        builder.setView(view);
+
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        final EditText editReview = view.findViewById(R.id.editable_item);
+        final EditText editRating = view.findViewById(R.id.editable_item2);
+
+        editReview.setText(userDataList.getReview());
+        editRating.setText(userDataList.getRating());
+
+
+        view.findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String newReview = editReview.getText().toString().trim();
+                String newRating = editRating.getText().toString().trim();
+
+
+                if (newReview.isEmpty()) {
+                    editReview.setError("Review can't be empty");
+                    editReview.requestFocus();
+                    return;
+                }
+
+                if (newRating.isEmpty()) {
+                    editRating.setError("Rating can't be empty");
+                    editRating.requestFocus();
+                    return;
+                }
+
+
+                //calling the update method from database manager instance
+
+                if (mDatabase.updateData(userDataList.getId(), newReview, newRating)) {
+                    Toast.makeText(mCtx, "User Details Updated", Toast.LENGTH_SHORT).show();
+                    loadDataFromDatabase();
+                }
+                alertDialog.dismiss();
+                loadDataFromDatabase();
+            }
+        });
+    }
 
 
     private void deleteData(final DataModel DataList) {

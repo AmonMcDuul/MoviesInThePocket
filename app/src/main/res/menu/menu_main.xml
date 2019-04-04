@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.amonmcduul.moviesinthepocket.Activities.MainActivity">
     <item
-        android:id="@+id/new_search"
+        android:id="@+id/my_list"
         android:orderInCategory="100"
-        android:title="Search"
+        android:title="My list"
         app:showAsAction="always" />
 </menu>

@@ -18,11 +18,12 @@ public class EditDataActivity extends AppCompatActivity {
     private static final String TAG = "EditDataActivity";
 
     private Button btnSave,btnDelete;
-    private EditText editable_item;
+    private EditText editable_item, editable_item2;
 
     DatabaseHelper mDatabaseHelper;
 
-    private String selectedName;
+    private String selectedReview;
+    private String selectedRating;
     private int selectedID;
 
     @Override
@@ -32,8 +33,8 @@ public class EditDataActivity extends AppCompatActivity {
         btnSave = (Button) findViewById(R.id.btnSave);
         btnDelete = (Button) findViewById(R.id.btnDelete);
         editable_item = (EditText) findViewById(R.id.editable_item);
+        editable_item2 = (EditText) findViewById(R.id.editable_item2);
         mDatabaseHelper = new DatabaseHelper(this);
-
         //get the intent extra from the ListDataActivity
         Intent receivedIntent = getIntent();
 
@@ -41,19 +42,22 @@ public class EditDataActivity extends AppCompatActivity {
         selectedID = receivedIntent.getIntExtra("id",-1); //NOTE: -1 is just the default value
 
         //now get the name we passed as an extra
-        selectedName = receivedIntent.getStringExtra("name");
+        selectedReview = receivedIntent.getStringExtra("review");
+        selectedRating = receivedIntent.getStringExtra("rating");
 
         //set the text to show the current selected name
-        editable_item.setText(selectedName);
+        editable_item.setText(selectedReview);
+        editable_item2.setText(selectedRating);
+
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String item = editable_item.getText().toString();
                 if(!item.equals("")){
-                    mDatabaseHelper.updateName(item,selectedID,selectedName);
+                    mDatabaseHelper.updateData(selectedID,selectedReview,selectedRating);
                 }else{
-                    toastMessage("You must enter a name");
+                    toastMessage("You must enter a review");
                 }
             }
         });
@@ -61,7 +65,7 @@ public class EditDataActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDatabaseHelper.deleteName(selectedID,selectedName);
+                mDatabaseHelper.deleteName(selectedID,selectedReview);
                 editable_item.setText("");
                 toastMessage("removed from database");
             }

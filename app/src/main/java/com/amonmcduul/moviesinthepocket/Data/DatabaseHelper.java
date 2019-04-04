@@ -3,7 +3,6 @@ package com.amonmcduul.moviesinthepocket.Data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -18,7 +17,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL2 = "title";
     private static final String COL3 = "review";
     private static final String COL4 = "rating";
-
 
     public DatabaseHelper(Context context) {
         super(context, TABLE_NAME, null, 1);
@@ -62,7 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public Cursor getData(){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + COL2 + " ASC " ;
         Cursor data = db.rawQuery(query, null);
         return data;
     }
@@ -81,19 +79,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Updates the name field
-     * @param newName
-     * @param id
-     * @param oldName
+     * Updates the data field
      */
-    public void updateName(String newName, int id, String oldName){
+    public boolean updateData(int id, String newReview, String newRating){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "UPDATE " + TABLE_NAME + " SET " + COL2 +
-                " = '" + newName + "' WHERE " + COL1 + " = '" + id + "'" +
-                " AND " + COL2 + " = '" + oldName + "'";
-        Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting name to " + newName);
+        String query = "UPDATE " + TABLE_NAME + " SET " + COL3 +
+                " = '" + newReview + "' WHERE " + COL1 + " = '" + id + "'" ;
+        String query2 = "UPDATE " + TABLE_NAME + " SET " + COL4 +
+                " = '" + newRating + "' WHERE " + COL1 + " = '" + id + "'" ;
+        Log.d(TAG, "updateData: query: " + query);
         db.execSQL(query);
+        db.execSQL(query2);
+
+        return false;
     }
 
     /**
