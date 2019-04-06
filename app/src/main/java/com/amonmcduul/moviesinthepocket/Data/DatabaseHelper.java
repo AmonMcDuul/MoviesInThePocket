@@ -83,20 +83,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Returns only the ID that matches the name passed in
-     *
-     * @param name
-     * @return
-     */
-//    public Cursor getItemID(String name) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME +
-//                " WHERE " + COL2 + " = '" + name + "'";
-//        Cursor data = db.rawQuery(query, null);
-//        return data;
-//    }
-
-    /**
      * Updates the data field
      *
      * @param id        the id
@@ -139,7 +125,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param id the id
      * @return the boolean
      */
-    public boolean deleteUser(int id) {
+    public boolean deleteData(int id) {
         SQLiteDatabase db = getWritableDatabase();
         return db.delete(TABLE_NAME, COL1 + "=?", new String[]{String.valueOf(id)}) == 1;
     }

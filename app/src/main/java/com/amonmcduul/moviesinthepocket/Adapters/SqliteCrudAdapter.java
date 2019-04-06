@@ -158,7 +158,7 @@ public class SqliteCrudAdapter extends ArrayAdapter<DataModel> {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 //calling the delete method from the database manager instance
-                if (mDatabase.deleteUser(DataList.getId()))
+                if (mDatabase.deleteData(DataList.getId()))
                     loadDataFromDatabase();
             }
         });
