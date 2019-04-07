@@ -49,7 +49,7 @@ public class DataActivity extends AppCompatActivity {
     }
 
     private void loadDataFromDatabase() {
-        //we are here using the DatabaseManager instance to get all saved data
+        //Using the DatabaseManager instance to get all saved data
         Cursor cursor = mDatabase.getData();
 
         if (cursor.moveToFirst()) {
@@ -62,7 +62,7 @@ public class DataActivity extends AppCompatActivity {
                 ));
             } while (cursor.moveToNext());
 
-            //passing the databasemanager instance this time to the adapter
+            //passing the databasemanager instance to the adapter
             SqliteCrudAdapter adapter = new SqliteCrudAdapter(this, R.layout.list_layout_data, dataList, mDatabase);
             listView.setAdapter(adapter);
         }

@@ -41,7 +41,6 @@ public class SqliteCrudAdapter extends ArrayAdapter<DataModel> {
     /**
      * The M database.
      */
-//the databasemanager object
     DatabaseHelper mDatabase;
 
     /**
@@ -52,7 +51,6 @@ public class SqliteCrudAdapter extends ArrayAdapter<DataModel> {
      * @param dataList  the data list
      * @param mDatabase the m database
      */
-//modified the constructor and we are taking the DatabaseManager instance here
     public SqliteCrudAdapter(Context mCtx, int layoutRes, List<DataModel> dataList, DatabaseHelper mDatabase) {
         super(mCtx, layoutRes, dataList);
 
@@ -157,7 +155,6 @@ public class SqliteCrudAdapter extends ArrayAdapter<DataModel> {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                //calling the delete method from the database manager instance
                 if (mDatabase.deleteData(DataList.getId()))
                     loadDataFromDatabase();
             }
@@ -175,7 +172,6 @@ public class SqliteCrudAdapter extends ArrayAdapter<DataModel> {
     }
 
     private void loadDataFromDatabase() {
-        //calling the read method from database instance
         Cursor cursor = mDatabase.getData();
 
         dataList.clear();

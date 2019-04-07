@@ -63,29 +63,37 @@ public class DatabaseTest {
         assertTrue(mRowId != -1);
     }
 
-//    @org.junit.Test
-//    public void testIsDataCorrectInDB(){
-//        DatabaseHelper databaseHelper = new DatabaseHelper(mContext);
-//        SQLiteDatabase db = databaseHelper.getWritableDatabase();
-//        Cursor cursor = db.query(DatabaseHelper.TABLE_NAME,null,null,null,null,null,null);
-//        assertTrue(cursor.moveToFirst());
-//
-//        int idColumnIndex = cursor.getColumnIndex(C OL1);
-//        int dbId = cursor.getInt(idColumnIndex);
-//
-//        int titleColumnIndex = cursor.getColumnIndex(COL2);
-//        String dbTitle = cursor.getString(titleColumnIndex);
-//
-//        int reviewColumnIndex = cursor.getColumnIndex(COL3);
-//        String dbReview = cursor.getString(reviewColumnIndex);
-//
-//        int ratingColumnIndex = cursor.getColumnIndex(COL4);
-//        String dbRating = cursor.getString(ratingColumnIndex);
-//
-//     //   assertEquals(mRowId, dbId);
-//        assertEquals(mTitle, dbTitle);
-//        assertEquals(mReview, dbReview);
-//        assertEquals(mRating, dbRating);
-//
-//    }
+    @org.junit.Test
+    public void testIsDataCorrectInDB(){
+        testDropDB();
+        DatabaseHelper databaseHelper = new DatabaseHelper(mContext);
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL2, mTitle);
+        contentValues.put(COL3, mReview);
+        contentValues.put(COL4, mRating);
+
+        mRowId = db.insert(DatabaseHelper.TABLE_NAME, null, contentValues);
+        Cursor cursor = db.query(DatabaseHelper.TABLE_NAME,null,null,null,null,null,null);
+        assertTrue(cursor.moveToFirst());
+
+        int idColumnIndex = cursor.getColumnIndex(COL1);
+        int dbId = cursor.getInt(idColumnIndex);
+
+        int titleColumnIndex = cursor.getColumnIndex(COL2);
+        String dbTitle = cursor.getString(titleColumnIndex);
+
+        int reviewColumnIndex = cursor.getColumnIndex(COL3);
+        String dbReview = cursor.getString(reviewColumnIndex);
+
+        int ratingColumnIndex = cursor.getColumnIndex(COL4);
+        String dbRating = cursor.getString(ratingColumnIndex);
+
+        assertEquals(mRowId, dbId);
+        assertEquals(mTitle, dbTitle);
+        assertEquals(mReview, dbReview);
+        assertEquals(mRating, dbRating);
+
+    }
 }
